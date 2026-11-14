@@ -58,8 +58,9 @@ fn safari_ua(macos_major: u64) -> String {
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/{safari}.0 Safari/605.1.15"
     )
 }
-const ARAD_FONT_JS: &str = include_str!("../resources/arad-font.js");
+
 const BRIDGE_JS: &str = include_str!("../resources/bridge.js");
+const ARAD_FONT_JS: &str = include_str!("../resources/arad-font.js");
 /// Hides WhatsApp's "get the desktop app" prompts (issue #83, upsell.js).
 const UPSELL_JS: &str = include_str!("../resources/upsell.js");
 /// Opens (or closes) the privacy blur panel in an account page (privacy.js).
