@@ -122,6 +122,7 @@ macro_rules! account_webview {
             })
             .initialization_script(include_str!("../resources/integration.js"))
             .initialization_script(BRIDGE_JS)
+            .initialization_script(ARAD_FONT_JS)
             .initialization_script(MEDIA_JS)
             .initialization_script(include_str!("../resources/privacy.js"))
             .initialization_script(if crate::settings::load($app).hide_app_banner {
