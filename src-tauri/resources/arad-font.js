@@ -5,40 +5,47 @@
   const css = `
     @font-face {
       font-family: 'Arad';
-      src: local('Arad'), local('Arad Regular');
+      src: local('Arad'), local('Arad Regular'), local('Arad-Regular');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
       font-family: 'Arad';
-      src: local('Arad Medium');
-      font-weight: 500;
+      src: local('Arad Bold'), local('Arad-Bold');
+      font-weight: 700;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
       font-family: 'Arad';
-      src: local('Arad Bold'), local('Arad SemiBold');
-      font-weight: 600 700;
+      src: local('Arad VF'), local('Arad-VF'), local('Arad Variable');
+      font-weight: 100 900;
       font-style: normal;
       font-display: swap;
     }
 
-    /* Force Arad on the main WhatsApp Web UI */
-    body,
-    #app,
-    .app-wrapper-web,
-    .selectable-text,
-    [dir="rtl"],
-    [dir="auto"],
-    span, div, p, pre, input, textarea {
+    /* Force Arad very aggressively */
+    html, body, #app, #app *,
+    .app, .app *,
+    [data-testid],
+    [data-testid] *,
+    span, div, p, pre, input, textarea, button {
       font-family: "Arad", "Vazirmatn", "Tahoma", "Segoe UI", sans-serif !important;
     }
   `;
 
-  const style = document.createElement('style');
-  style.id = 'whatrust-arad-font';
-  style.textContent = css;
-  (document.head || document.documentElement).appendChild(style);
+  function inject() {
+    let style = document.getElementById('whatrust-arad-font');
+    if (!style) {
+      style = document.createElement('style');
+      style.id = 'whatrust-arad-font';
+      (document.head || document.documentElement).appendChild(style);
+    }
+    style.textContent = css;
+  }
+
+  inject();
+  document.addEventListener('DOMContentLoaded', inject);
+  setInterval(inject, 2000);   // keep re-applying (WhatsApp re-renders a lot)
 })();
